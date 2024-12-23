@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local"
 import "./globals.css";
 import 'easymde/dist/easymde.min.css';
+import { Toaster } from '../components/ui/toaster';
 
 const workSans = localFont({
     src: [
@@ -50,22 +51,23 @@ const workSans = localFont({
 })
 
 export const metadata: Metadata = {
-  title: "YC Directory",
-  description: "Pitch, Vote and Grow",
+    title: "YC Directory",
+    description: "Pitch, Vote and Grow",
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        className={workSans.variable}
-      >
-        {children}
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <body
+                className={workSans.variable}
+            >
+                {children}
+                <Toaster />
+            </body>
+        </html>
+    );
 }
