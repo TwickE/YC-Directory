@@ -1,4 +1,4 @@
-import { STARTUP_BY_ID_QUERY } from "@/lib/queries";
+import { PLAYLIST_BY_SLUG_QUERY, STARTUP_BY_ID_QUERY } from "@/lib/queries";
 import { formatDate } from "@/lib/utils";
 import { client } from "@/sanity/lib/client";
 import Link from "next/link";
@@ -8,6 +8,8 @@ import markdownit from "markdown-it";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import View from "@/components/View";
+import StartupCard, { StartupCardType } from "@/components/StartupCard";
+import { Star } from "lucide-react";
 
 const md = markdownit();
 
@@ -16,7 +18,10 @@ export const experimental_ppr = true;
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     const id = (await params).id;
 
-    const post = await client.fetch(STARTUP_BY_ID_QUERY, { id });
+    const [post, { select:  editorPosts}] = await Promise.all([
+        client.fetch(STARTUP_BY_ID_QUERY, { id }),
+        client.fetch(PLAYLIST_BY_SLUG_QUERY, { slug: 'editor-picks-new' })
+    ]);
 
     if (!post) return notFound();
 
@@ -52,9 +57,18 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                         <p>No details provided</p>
                     )}
                 </div>
-                <hr className="devider" />
+                <hr className="divider" />
 
-                {/* TODO: EDIROR SELECTED STARTUPS */}
+                {editorPosts?.length > 0 && (
+                    <div className="max-w-4xl mx-auto">
+                        <p className="text-30-semibold">Editor Picks</p>
+                        <ul className="mt-7 card_grid-sm">
+                            {editorPosts.map((post: StartupCardType, i: number) => (
+                                <StartupCard key={i} post={post} />
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </section>
             <Suspense fallback={<Skeleton className="view-skeleton"/>}>
                 <View id={id} />
