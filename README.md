@@ -20,5 +20,11 @@
 # Profile Page
 ![Profile Page](https://github.com/TwickE/ReadmeImages/blob/main/YC-DirectoryProfile.png?raw=true)
 
-# Mobile Pages
-![Mobile Pages](https://github.com/TwickE/ReadmeImages/blob/main/YC-DirectoryMobile.png?raw=true)
+# Create Startup Page
+![Create Startup Page](https://github.com/TwickE/ReadmeImages/blob/main/YC-DirectoryCreate.png?raw=true)
+
+# Mobile Home and Startup Pages
+![Mobile Home and Startup Pages](https://github.com/TwickE/ReadmeImages/blob/main/YC-DirectoryMobile1.png?raw=true)
+
+# Mobile Profile and Create Startup Pages
+![Mobile Profile and Create Startup Pages](https://github.com/TwickE/ReadmeImages/blob/main/YC-DirectoryMobile2.png?raw=true)
